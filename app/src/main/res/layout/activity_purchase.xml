@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F4F4"
+    android:fitsSystemWindows="true">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#7B007B"
+        android:gravity="center_vertical"
+        android:paddingTop="24dp"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="<"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Namma Metro QR Tickets"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- FROM -->
+        <AutoCompleteTextView
+            android:id="@+id/edtFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select From Station"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textColorHint="#111111"
+            android:paddingBottom="6dp"
+            android:backgroundTint="#888888" />
+
+        <!-- TO -->
+        <AutoCompleteTextView
+            android:id="@+id/edtTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select To Station"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textColorHint="#111111"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="6dp"
+            android:backgroundTint="#888888" />
+
+        <!-- Passenger Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Number of Passengers"
+                android:textSize="20sp"
+                android:textColor="#000000" />
+
+            <!-- Counter -->
+            <com.google.android.material.card.MaterialCardView
+            android:layout_width="180dp"
+            android:layout_height="56dp"
+            app:cardCornerRadius="30dp"
+            app:strokeColor="#7B007B"
+            app:strokeWidth="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/btnMinus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:textColor="#7B007B"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+                <TextView
+                    android:id="@+id/txtCount"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:gravity="center"
+                    android:textSize="25sp"
+                    android:textColor="#7B007B"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPlus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="+"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:textColor="#7B007B"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- Purchase Button -->
+        <Button
+            android:id="@+id/btnPurchase"
+            android:layout_width="240dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="PURCHASE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:elevation="6dp"
+            android:backgroundTint="#7B007B" />
+
+    </LinearLayout>
+
+</LinearLayout>
