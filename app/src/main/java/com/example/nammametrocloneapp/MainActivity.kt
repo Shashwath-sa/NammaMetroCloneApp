@@ -20,5 +20,11 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, TopUpActivity::class.java)
                 startActivity(intent)
             }
+            val btnFare = findViewById<Button>(R.id.btnFare)
+
+             btn.setOnClickListener {
+                val intent = Intent(this, FareInfo::class.java)
+                startActivity(intent)
+        }
         }
     }
