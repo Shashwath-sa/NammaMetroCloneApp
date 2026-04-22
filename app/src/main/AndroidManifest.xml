@@ -19,6 +19,9 @@
 
         <!-- Main Screen (Launcher) -->
         <activity
+            android:name=".Purchase"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 
