@@ -1,3 +1,107 @@
 <resources>
-    <string name="app_name">Namma Metro Clone App</string>
+    <string name="app_name">Namma Metro Clone</string>
+    <string name="title_metro_map">Metro Map</string>
+    <string name="desc_metro_map">Metro Map Image</string>
+    
+    <!-- Main UI Strings -->
+    <string name="user_name">Rohan Olekar</string>
+    <string name="user_initial">R</string>
+    <string name="lang_kannada">ಕ</string>
+    <string name="title_travel">Travel</string>
+    
+    <!-- Grid Menu Strings -->
+    <string name="menu_top_up">Top Up</string>
+    <string name="menu_qr_tickets">QR Tickets</string>
+    <string name="menu_qr_pass">QR pass</string>
+    <string name="menu_time_table">Time Table</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_fare_info">Fare Info</string>
+    <string name="menu_support">Support</string>
+    
+    <!-- Bottom Bar Strings -->
+    <string name="btn_active_tickets">Active Tickets/Passes</string>
+    <string name="btn_purchase">Purchase</string>
+    
+    <!-- QR Tickets Screen -->
+    <string name="title_qr_tickets">Namma Metro QR Tickets</string>
+    <string name="tab_active">ACTIVE</string>
+    <string name="tab_completed">COMPLETED</string>
+    <string name="tab_others">OTHERS</string>
+    <string name="msg_no_active_tickets">No Active Tickets</string>
+    <string name="btn_purchase_ticket">PURCHASE TICKET</string>
+    
+    <!-- Purchase Ticket Screen -->
+    <string name="hint_from_station">Select From Station</string>
+    <string name="hint_to_station">Select To Station</string>
+    <string name="label_passengers">Number of Passengers</string>
+    <string name="desc_swap">Swap Stations</string>
+    <string name="desc_remove">Remove Passenger</string>
+    <string name="desc_add">Add Passenger</string>
+    
+    <!-- Station Selection Screen -->
+    <string name="hint_enter_from_station">Enter From Station</string>
+    <string name="hint_enter_to_station">Enter To Station</string>
+    <string name="label_available_stations">AVAILABLE STATIONS</string>
+    <string name="label_order_by">Order By(Route)</string>
+    
+    <!-- QR Pass Screen -->
+    <string name="title_qr_pass">QR pass</string>
+    <string name="tab_used">USED</string>
+    <string name="msg_no_active_passes">No Active Passes</string>
+    <string name="btn_purchase_pass">PURCHASE PASS</string>
+
+    <!-- Purchase Pass Screen -->
+    <string name="label_select_pass">Select Pass</string>
+    <string name="pass_1_day">1 Day Pass</string>
+    <string name="price_1_day">₹ 250</string>
+    <string name="pass_3_day">3 Day Pass</string>
+    <string name="price_3_day">₹ 550</string>
+    <string name="pass_5_day">5 Day Pass</string>
+    <string name="price_5_day">₹ 850</string>
+    <string name="btn_proceed">Proceed</string>
+
+    <!-- Profile Screen -->
+    <string name="title_profile">Profile</string>
+    <string name="label_user_details">User details</string>
+    <string name="label_mobile_number">Mobile Number</string>
+    <string name="val_mobile_number">9110485983</string>
+    <string name="label_name">Name</string>
+    <string name="val_name">Rohan Olekar</string>
+    <string name="label_email">Email</string>
+    <string name="val_email">rohanolekar16@gmail.com</string>
+    <string name="label_manage_upi">Manage Namma Metro UPI</string>
+    <string name="label_delete_profile">Delete Profile</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_application_details">Application details</string>
+    <string name="label_version">Version : 2.20</string>
+    <string name="label_build_no">Build No. : 112</string>
+    <string name="label_release_date">Release Date : 07/023/2026</string>
+
+    <!-- Fare Info Screen -->
+    <string name="title_fare_info">Fare Info</string>
+    <string name="btn_check_fare">CHECK FARE</string>
+
+    <!-- Time Table Screen -->
+    <string name="title_time_table">Time Table</string>
+    <string name="label_monday_to_friday">Monday to Friday</string>
+    <string name="tab_purple_line">PURPLE LINE</string>
+    <string name="tab_green_line">GREEN LINE</string>
+    <string name="tab_yellow_line">YELLOW LINE</string>
+
+    <!-- Registration & OTP -->
+    <string name="title_verify_mobile">Verify Mobile Number</string>
+    <string name="label_mobile_verification">MOBILE VERIFICATION</string>
+    <string name="desc_otp_prompt">We will send you one time password\non this mobile number</string>
+    <string name="hint_enter_mobile">Enter Mobile Number</string>
+    <string name="btn_get_otp">GET OTP</string>
+    <string name="btn_verify_otp">VERIFY</string>
+    <string name="desc_enter_otp">Please enter the 6-digit OTP sent to</string>
+    <string name="hint_otp">Enter OTP</string>
+
+    <!-- Profile Registration -->
+    <string name="label_enter_details">Enter your details</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="btn_save">SAVE</string>
+    <string name="btn_cancel">CANCEL</string>
 </resources>

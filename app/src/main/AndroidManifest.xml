@@ -12,6 +12,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NammaMetroCloneApp">
         <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FareInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QrTicketsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseTicketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StationSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QrPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchasePassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TimeTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MobileVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OtpVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TopUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActiveTicketsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
