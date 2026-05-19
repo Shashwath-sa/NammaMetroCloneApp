@@ -15,6 +15,10 @@ import androidx.activity.enableEdgeToEdge
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.math.max
+import kotlin.math.min
+
 class PurchaseTicketActivity : AppCompatActivity() {
 
     private var passengerCount = 1
@@ -98,17 +102,163 @@ class PurchaseTicketActivity : AppCompatActivity() {
             }
         }
 
+        val routeDistances = listOf(
+            "Whitefield (Kadugodi)" to 1.5,
+            "Hopefarm Channasandra" to 1.0,
+            "Kadugodi Tree Park" to 1.2,
+            "Pattandur Agrahara" to 1.1,
+            "Sri Sathya Sai Hospital" to 1.0,
+            "Nallurhalli" to 1.3,
+            "Kundalahalli" to 1.1,
+            "Seetharam Palya" to 1.4,
+            "Hoodi" to 1.0,
+            "Garudacharpalya" to 1.0,
+            "Singayyanapalya" to 1.4,
+            "K.R. Pura" to 1.6,
+            "Benniganahalli" to 1.8,
+            "Baiyappanahalli" to 1.2,
+            "Swami Vivekananda Road" to 1.0,
+            "Indiranagar" to 1.2,
+            "Halasuru" to 1.0,
+            "Trinity" to 1.0,
+            "M.G. Road" to 1.0,
+            "Cubbon Park" to 0.9,
+            "Vidhana Soudha" to 1.0,
+            "Central College" to 1.1,
+            "Majestic" to 0.8,
+            "City Railway Station" to 1.0,
+            "Magadi Road" to 1.2,
+            "Hosahalli" to 1.1,
+            "Vijayanagar" to 1.0,
+            "Attiguppe" to 1.1,
+            "Deepanjali Nagar" to 1.2,
+            "Mysuru Road" to 1.0,
+            "Pantharapalya" to 1.3,
+            "Nayandahalli" to 1.5,
+            "Rajarajeshwari Nagar" to 1.2,
+            "Jnanabharathi" to 1.4,
+            "Pattanagere" to 1.1,
+            "Kengeri Bus Terminal" to 1.0,
+            "Kengeri" to 2.1,
+            "Challaghatta" to 0.0
+        )
+
+        fun getMappedStationName(station: String): String {
+            return when (station) {
+                "Dr. B.R. Ambedkar (Vidhana Soudha)" -> "Vidhana Soudha"
+                "Sir M. Visvesvaraya (Central College)" -> "Central College"
+                "Nadaprabhu Kempegowda (Majestic)" -> "Majestic"
+                "Mysore Road" -> "Mysuru Road"
+                "KR Puram" -> "K.R. Pura"
+                "Seetharama Palya" -> "Seetharam Palya"
+                else -> station
+            }
+        }
+
         btnPurchaseConfirm.setOnClickListener {
             val fromStation = etFromStation.text.toString()
             val toStation = etToStation.text.toString()
             
             if (fromStation.isBlank() || toStation.isBlank()) {
                 Toast.makeText(this, "Please select both stations", Toast.LENGTH_SHORT).show()
-            } else if (fromStation.equals(toStation, ignoreCase = true)) {
+                return@setOnClickListener
+            } 
+            
+            if (fromStation.equals(toStation, ignoreCase = true)) {
                 Toast.makeText(this, "Source and destination cannot be the same", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Proceeding to payment for \$passengerCount ticket(s)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            val mappedFrom = getMappedStationName(fromStation)
+            val mappedTo = getMappedStationName(toStation)
+
+            val fromIndex = routeDistances.indexOfFirst { it.first == mappedFrom }
+            val toIndex = routeDistances.indexOfFirst { it.first == mappedTo }
+
+            var distance = 0.0
+            if (fromIndex != -1 && toIndex != -1) {
+                val start = min(fromIndex, toIndex)
+                val end = max(fromIndex, toIndex)
+                for (i in start until end) {
+                    distance += routeDistances[i].second
+                }
+            } else {
+                distance = 10.0 // Default fallback distance if stations not on this line
+            }
+
+            // Round distance to 1 decimal place
+            distance = Math.round(distance * 10.0) / 10.0
+
+            val baseTokenFare = when {
+                distance <= 2.0 -> 10
+                distance <= 4.0 -> 20
+                distance <= 6.0 -> 30
+                distance <= 8.0 -> 40
+                distance <= 10.0 -> 50
+                distance <= 15.0 -> 60
+                distance <= 20.0 -> 70
+                distance <= 25.0 -> 80
+                else -> 90
+            }
+
+            val totalTokenFare = baseTokenFare * passengerCount
+            val totalSmartCardFare = totalTokenFare * 0.95
+
+            val message = "Distance Travelled: $distance km\n\n" +
+                          "Passengers: $passengerCount\n" +
+                          "Token Fare: ₹$totalTokenFare\n" +
+                          "Smart Card Fare*: ₹${String.format("%.2f", totalSmartCardFare)}"
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Fare Details")
+                .setMessage(message)
+                .setPositiveButton("Proceed to Pay") { dialog, _ ->
+                    dialog.dismiss()
+                    showPinDialog(fromStation, toStation, totalTokenFare, passengerCount)
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+
+    private fun showPinDialog(fromStation: String, toStation: String, fare: Int, passengers: Int) {
+        val input = EditText(this)
+        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD
+        input.hint = "Enter PIN"
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Enter PIN")
+            .setMessage("Please enter your 4-digit PIN to confirm payment.")
+            .setView(input)
+            .setPositiveButton("Submit") { dialog, _ ->
+                val pin = input.text.toString()
+                if (pin == "1234") {
+                    saveTicket(fromStation, toStation, fare, passengers)
+                    Toast.makeText(this, "Ticket Purchased Successfully!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ActiveTicketsActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Incorrect PIN", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun saveTicket(fromStation: String, toStation: String, fare: Int, passengers: Int) {
+        val prefs = getSharedPreferences("app_prefs", android.content.Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putString("active_ticket_from", fromStation)
+            putString("active_ticket_to", toStation)
+            putInt("active_ticket_fare", fare)
+            putInt("active_ticket_passengers", passengers)
+            putLong("active_ticket_time", System.currentTimeMillis())
+            apply()
         }
     }
 }

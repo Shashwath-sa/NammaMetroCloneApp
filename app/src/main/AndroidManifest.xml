@@ -11,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NammaMetroCloneApp">
+
+        <!-- Fare Info Page -->
+        <activity
+            android:name=".FareInfo"
+            android:exported="false" />
+
+        <!-- Main Screen (Launcher) -->
+        <activity
+            android:name=".Purchase"
+            android:exported="false" />
         <activity
             android:name=".MapActivity"
             android:exported="false" />
@@ -51,17 +61,25 @@
             android:name=".TopUpActivity"
             android:exported="false" />
         <activity
+            android:name=".TopUpDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActiveTicketsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatBotActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
     </application>
 
 </manifest>

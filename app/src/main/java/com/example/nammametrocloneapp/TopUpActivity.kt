@@ -51,7 +51,7 @@ class TopUpActivity : AppCompatActivity() {
                 true
             }
             R.id.action_add_card -> {
-                Toast.makeText(this, "Add Card clicked", Toast.LENGTH_SHORT).show()
+                showAddCardDialog()
                 true
             }
             R.id.action_card_status -> {
@@ -60,5 +60,35 @@ class TopUpActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showAddCardDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_card, null)
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setView(dialogView)
+            .create()
+
+        val btnConfirm = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_confirm)
+        val btnCancel = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_cancel)
+        val etCardNumber = dialogView.findViewById<android.widget.EditText>(R.id.et_card_number)
+
+        btnConfirm.setOnClickListener {
+            val cardNumber = etCardNumber.text.toString()
+            if (cardNumber.length == 11) {
+                Toast.makeText(this, "Card added: $cardNumber", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+                val intent = android.content.Intent(this, TopUpDetailsActivity::class.java)
+                intent.putExtra("CARD_NUMBER", cardNumber)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Please enter an 11-digit card number", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

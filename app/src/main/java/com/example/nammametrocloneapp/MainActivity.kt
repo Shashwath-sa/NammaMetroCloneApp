@@ -14,6 +14,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +94,21 @@ class MainActivity : AppCompatActivity() {
         findViewById<MaterialCardView>(R.id.profileIcon).setOnClickListener(profileClickListener)
         findViewById<TextView>(R.id.userName).setOnClickListener(profileClickListener)
 
+        val langClickListener = android.view.View.OnClickListener {
+            val currentLocales = AppCompatDelegate.getApplicationLocales()
+            val isKannada = currentLocales.toLanguageTags().contains("kn")
+            
+            val newLocale = if (isKannada) {
+                LocaleListCompat.forLanguageTags("en")
+            } else {
+                LocaleListCompat.forLanguageTags("kn")
+            }
+            AppCompatDelegate.setApplicationLocales(newLocale)
+        }
+        
+        findViewById<ImageView>(R.id.langIcon).setOnClickListener(langClickListener)
+        findViewById<TextView>(R.id.langText).setOnClickListener(langClickListener)
+
         findViewById<LinearLayout>(R.id.btnSupport).setOnClickListener {
             val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_support, null)
             val dialog = MaterialAlertDialogBuilder(this)
@@ -103,6 +121,10 @@ class MainActivity : AppCompatActivity() {
             }
             
             dialog.show()
+        }
+
+        findViewById<LinearLayout>(R.id.btnChatBot).setOnClickListener {
+            startActivity(Intent(this, ChatBotActivity::class.java))
         }
     }
 

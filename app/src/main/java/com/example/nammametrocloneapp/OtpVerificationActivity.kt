@@ -35,7 +35,9 @@ class OtpVerificationActivity : AppCompatActivity() {
         }
 
         val mobileNumber = intent.getStringExtra("MOBILE_NUMBER") ?: ""
-        findViewById<TextView>(R.id.tvMobileNumber).text = "+91 \$mobileNumber"
+        findViewById<TextView>(R.id.tvMobileNumber).text = "+91 $mobileNumber"
+
+        Toast.makeText(this, "OTP sent to +91 $mobileNumber", Toast.LENGTH_SHORT).show()
 
         val etOtp = findViewById<EditText>(R.id.etOtp)
         val btnVerify = findViewById<MaterialButton>(R.id.btnVerify)
@@ -49,7 +51,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Please enter a 6-digit OTP", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter a 6-digit OTP sent to your mobile number", Toast.LENGTH_SHORT).show()
             }
         }
     }

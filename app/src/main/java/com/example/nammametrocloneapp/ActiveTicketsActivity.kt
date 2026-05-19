@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
+import android.content.Context
+import android.view.View
+import android.widget.TextView
 
 class ActiveTicketsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,44 @@ class ActiveTicketsActivity : AppCompatActivity() {
 
         toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        
+        val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val time = prefs.getLong("active_ticket_time", 0)
+        
+        val tvNoTickets = findViewById<TextView>(R.id.tvNoTickets)
+        val cardTicket = findViewById<View>(R.id.cardTicket)
+        
+        val currentTime = System.currentTimeMillis()
+        val twentyFourHours = 24 * 60 * 60 * 1000L
+        
+        if (time > 0 && currentTime - time <= twentyFourHours) {
+            tvNoTickets.visibility = View.GONE
+            cardTicket.visibility = View.VISIBLE
+            
+            val tvTicketFrom = findViewById<TextView>(R.id.tvTicketFrom)
+            val tvTicketTo = findViewById<TextView>(R.id.tvTicketTo)
+            val tvTicketFare = findViewById<TextView>(R.id.tvTicketFare)
+            val tvTicketTime = findViewById<TextView>(R.id.tvTicketTime)
+            
+            val fromStation = prefs.getString("active_ticket_from", "")
+            val toStation = prefs.getString("active_ticket_to", "")
+            val fare = prefs.getInt("active_ticket_fare", 0)
+            val passengers = prefs.getInt("active_ticket_passengers", 1)
+            
+            tvTicketFrom.text = "From: $fromStation"
+            tvTicketTo.text = "To: $toStation"
+            tvTicketFare.text = "Total Fare: ₹$fare (Passengers: $passengers)"
+            
+            val dateFormat = java.text.SimpleDateFormat("dd MMM yyyy, hh:mm a", java.util.Locale.getDefault())
+            tvTicketTime.text = "Booked At: " + dateFormat.format(java.util.Date(time))
+        } else {
+            tvNoTickets.visibility = View.VISIBLE
+            cardTicket.visibility = View.GONE
         }
     }
 

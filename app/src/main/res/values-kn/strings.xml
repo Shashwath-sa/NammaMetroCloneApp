@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ನಮ್ಮ ಮೆಟ್ರೋ ಕ್ಲೋನ್</string>
+    <string name="title_metro_map">ಮೆಟ್ರೋ ನಕ್ಷೆ</string>
+    <string name="desc_metro_map">ಮೆಟ್ರೋ ನಕ್ಷೆ ಚಿತ್ರ</string>
+    
+    <!-- Main UI Strings -->
+    <string name="user_name">ರೋಹನ್ ಒಲೇಕರ್</string>
+    <string name="user_initial">R</string>
+    <string name="lang_kannada">E</string>
+    <string name="title_travel">ಪ್ರಯಾಣ</string>
+    
+    <!-- Grid Menu Strings -->
+    <string name="menu_top_up">ಟಾಪ್ ಅಪ್</string>
+    <string name="menu_qr_tickets">ಕ್ಯೂಆರ್ ಟಿಕೆಟ್</string>
+    <string name="menu_qr_pass">ಕ್ಯೂಆರ್ ಪಾಸ್</string>
+    <string name="menu_time_table">ವೇಳಾಪಟ್ಟಿ</string>
+    <string name="menu_map">ನಕ್ಷೆ</string>
+    <string name="menu_fare_info">ದರ ಮಾಹಿತಿ</string>
+    <string name="menu_support">ಬೆಂಬಲ</string>
+    
+    <!-- Bottom Bar Strings -->
+    <string name="btn_active_tickets">ಸಕ್ರಿಯ ಟಿಕೆಟ್/ಪಾಸ್</string>
+    <string name="btn_purchase">ಖರೀದಿಸಿ</string>
+</resources>

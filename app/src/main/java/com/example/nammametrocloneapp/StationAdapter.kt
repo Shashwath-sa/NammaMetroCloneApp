@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class StationAdapter(
-    private val stations: List<String>,
+    private var stations: List<String>,
     private val onStationClick: (String) -> Unit
 ) : RecyclerView.Adapter<StationAdapter.StationViewHolder>() {
 
@@ -29,4 +29,9 @@ class StationAdapter(
     }
 
     override fun getItemCount() = stations.size
+
+    fun updateData(newStations: List<String>) {
+        stations = newStations
+        notifyDataSetChanged()
+    }
 }

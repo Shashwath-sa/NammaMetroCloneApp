@@ -68,6 +68,7 @@
         android:layout_marginHorizontal="64dp"
         android:layout_marginTop="32dp"
         android:text="@string/btn_check_fare"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"
